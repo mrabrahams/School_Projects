@@ -3,45 +3,29 @@
  * This class will not compile until you have completed the requirements outlined in 
  * the lab description.
  *
- * @originalAuthor Imtiaz Muhammad Arafat (abc123)
- * @author Dwight Abrahams
+ * @originalAuthor Professor Arafat (abc123)
+ * @author Dwight
  * Lab 1 - Zoo Management
  * Summer 2022
  */
 
 public class Lab1 {
 
-    public static void main( String[] args ) {
-        Zoo animalKingdom = new Zoo( "Animal Kingdom Zoo", 10 );
+    public static void main( String[] args ) throws Exception {
+        Zoo animalKingdom = new Zoo( "Animal Kingdom" );
 
-        Zone m = new Zone( "Monkey", 10 );
-        Zone t = new Zone( "Tiger", 2 );
-        Zone l = new Zone( "Lion", 20 );
-        Zone e = new Zone("Elephant", 15);
+        // Load data for the zoo, and print its current status
+        animalKingdom.loadZones("animalData/zones.csv");
+        animalKingdom.loadAnimals("animalData/animals.csv");
 
-        Animal bubbles = new Animal( "Monkey", "Bubbles the Chimp", false );
-        Animal grape = new Animal( "Monkey", "Grape Ape", false );
-        Animal sher = new Animal( "Tiger", "Shere Khan", true );
-        Animal tigger = new Animal( "Tiger", "Tigger", true );
-        Animal aslan = new Animal( "Lion", "Aslan", true );
-        Animal simba = new Animal( "Lion", "Simba", true );
-        Animal christian = new Animal( "Lion", "Christian", true );
-        Animal elmar = new Animal( "Elephant", "Elmar", false );
 
-        m.addAnimal( bubbles );
-        m.addAnimal( grape );
-        t.addAnimal( sher );
-        t.addAnimal( tigger );
-        l.addAnimal( aslan );
-        l.addAnimal( simba );
-        l.addAnimal( christian );
-        e.addAnimal(elmar);
+        System.out.println( animalKingdom );
 
-        animalKingdom.addZone( m );
-        animalKingdom.addZone( t );
-        animalKingdom.addZone( l );
-        animalKingdom.addZone( e );
+        // Relocate the lion, "Christian" to the "Lion" zone, it was kept
+        //in the "Tiger" zone! then print updated status of the Zoo.
+        animalKingdom.relocate( "Christian", "L" );
+        animalKingdom.save();
 
-        System.out.println(animalKingdom);
+        System.out.println( animalKingdom );
     }
 }

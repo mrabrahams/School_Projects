@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 /**
  * @author      Dwight
  * @category    Applications Programming
- * @version     v1.0 16 June 2022
+ * @version     v1.1 30 June 2022
  */
 
  /*
@@ -18,44 +20,48 @@ variables
 public class Zone {
     private String name;
 
-    private int capacity;
+    private ArrayList<Animal> animals = new ArrayList<>();
 
-    private Animal[] animals = new Animal[capacity];
+    private char zoneCode;
+
+    private String safetyRating;
 
     //default constructor
     public Zone() {
     }
     //custom constructor
-    public Zone(String name, int capacity) {
+    public Zone(String name, String safetyRating, char zoneCode) {
         this.name = name;
-        this.capacity = capacity;
-
-
+        this.zoneCode = zoneCode;
+        this.safetyRating = safetyRating;
     }
 
     //a toString method which returns a String representation of all the animals in the zone
     public String toString() {
-        String output = "";
-        output += this.name + " Zone : \n";//add name of zone
-        output += "----------------\n";
+        StringBuilder output = new StringBuilder();
+        output.append(this.name).append(" Zone : \n");//add name of zone
+        output.append("----------------\n");
         for (Animal animal : animals) {
-            output += animal.toString() + "\n"; //add animal to string
+            output.append(animal.toString()).append("\n"); //add animal to string
         }
-        return output;
+        return output.toString();
     }
 
-    //addAnimal method takes an Animal object returns nothing
+    // a method addAnimal which takes in an Animal and adds them to that respective Zone
     public void addAnimal(Animal animal) {
-        //add animal to array of animals
-        Animal[] temp = new Animal[animals.length + 1]; //create new array of animals
-        for (int i = 0; i < animals.length; i++) {
-            temp[i] = animals[i]; //copy old array of animals into new array
-        }
-        temp[animals.length] = animal;
-        animals = temp;
+        this.animals.add(animal); //add animal to arraylist
+        animal.setZoneCode(this.zoneCode); //set zone code of animal to zone code of zone
     }
 
-    //getters and setters
+    // a method removeAnimal which takes in an Animal and zone then removes them from that Zone
+    public void removeAnimal(Animal animal) {
+        this.animals.remove(animal); //remove animal from arraylist
+        animal.setZoneCode(' '); //set zone code of animal to blank
+    }
+
+
+
+    //getters and setters for variables
     public String getName() {
         return name;
     }
@@ -64,11 +70,27 @@ public class Zone {
         this.name = name;
     }
 
-    public Animal[] getAnimals() {
+    public char getZoneCode() {
+        return zoneCode;
+    }
+
+    public void setZoneCode(char zoneCode) {
+        this.zoneCode = zoneCode;
+    }
+
+    public String getSafetyRating() {
+        return safetyRating;
+    }
+
+    public void setSafetyRating(String safetyRating) {
+        this.safetyRating = safetyRating;
+    }
+
+    public ArrayList<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(Animal[] animals) {
+    public void setAnimals(ArrayList<Animal> animals) {
         this.animals = animals;
     }
 

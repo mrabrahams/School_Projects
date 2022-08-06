@@ -1,7 +1,7 @@
 /**
  * @author      Dwight
  * @category    Applications Programming
- * @version     v1.0 16 June 2022
+ * @version     v1.1 30 June 2022
  */
 
  /*
@@ -18,15 +18,17 @@ public class Animal {
     private String name;
     private String species;
     private boolean isCarnivore;
+    private char zoneCode;
 
     //default constructor
     Animal(){
     }
     //constructor
-    public Animal(String species, String name, boolean isCarnivore) {
+    public Animal(String name, String species, boolean isCarnivore, char zoneCode) {
         this.species = species;
         this.name = name;
         this.isCarnivore = isCarnivore;
+        this.zoneCode = zoneCode;
     }
 
     //toString method which returns a String representation of the animal
@@ -66,13 +68,21 @@ public class Animal {
         this.isCarnivore = isCarnivore;
     }
 
+    public char getZoneCode() {
+        return zoneCode;
+    }
+
+    public void setZoneCode(char zoneCode) {
+        this.zoneCode = zoneCode;
+    }
+
 }
 
 /*
     Purpose:  allows the class to be tested
 
 	public static void main( String[] args ) {
-		Animal testAnimal = new Animal( "Monkey", "Bubbles the Chimp", false );
+		Animal testAnimal = new Animal( "Monkey", "Bubbles the Chimp", false, "M" );
 		System.out.println(testAnimal);
 
 	} */
